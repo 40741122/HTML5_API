@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        input[type=file]{
+            display: none;
+        }
+
+        .myLabel{
+            display: inline-block;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #4c4747;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .myLabel .icon{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            background-color: #4c4747;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px 0 0 0;
+        }
+
+        .myLabel .img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .myLabel .img img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <label for="myFile1" class="myLabel">
+            <div class="img"></div>
+            <i class="fa-solid fa-gear icon"></i>
+        </label>
+        <input type="file" id="myFile1" accept="image/*" name="myFiles[]">
+    
+        <label for="myFile2" class="myLabel">
+            <div class="img"></div>
+            <i class="fa-solid fa-gear icon"></i>
+        </label>
+        <input type="file" id="myFile2" accept="image/*" name="myFiles[]">
+
+        <label for="myFile3" class="myLabel">
+            <div class="img"></div>
+            <i class="fa-solid fa-gear icon"></i>
+        </label>
+        <input type="file" id="myFile3" accept="image/*" name="myFiles[]">
+    </div>
+    <script>
+        const container = document.querySelector(".container");
+        container.addEventListener("change", e => {
+            let file = e.target.files[0];
+            let element = e.target;
+            let reader = new FileReader();
+            reader.addEventListener("load", e => {
+                let images = new Image();
+                images.src = e.target.result;
+                let img = element.previousElementSibling.querySelector(".img");
+                img.innerHTML = "";
+                img.append(images);
+            })
+            reader.readAsDataURL(file);
+        })
+    </script>
+</body>
+</html>

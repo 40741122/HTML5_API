@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .myFiles{
+            display: none;
+        }
+        .container{
+            background-color: #e5b2b2;
+            min-height: 10px;
+        }
+    </style>
+    <title>test FileList 01</title>
+</head>
+<body>
+    <input type="file" class="myFiles" id="myFiles" multiple>
+    <div class="container" id="container"></div>
+    <script>
+        container.addEventListener("click", () => {
+            myFiles.click();
+        })
+        myFiles.addEventListener("change", e => {
+            let fileList = e.target.files;
+            [...fileList].forEach(file => {
+                container.innerHTML += `${file.name}<br>`;
+            })
+        })
+    </script>
+</body>
+</html>

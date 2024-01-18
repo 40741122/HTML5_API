@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test Storage 01</title>
+</head>
+<body>
+    
+    <script>
+        let storage = localStorage;
+        storage.setItem("username", "QCX");
+        storage.setItem("email", "QCX@gmail.com");
+        storage.setItem("tel", "0912345678");
+        // console.log(storage.getItem("username"));
+        // storage.removeItem("username");
+        // storage.clear();
+        // console.log(storage.getItem("username"));
+        // console.log(storage.getItem("email"));
+        // console.log(storage.getItem("tel"));
+        console.log(storage.length);
+        // console.log(storage.getItem(storage.key(1)));
+        // for (let i = 0; i < storage.length; i++){
+        //     console.log(`${storage.key(i)} = ${storage.getItem(storage.key(i))}`);
+        // }
+        for (let [k, v] of Object.entries(storage)){
+            console.log(`${k} = ${v}`);
+        }
+    </script>
+</body>
+</html>
