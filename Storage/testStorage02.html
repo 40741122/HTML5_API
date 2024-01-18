@@ -13,6 +13,9 @@
         .todoList{
             font-size: 24px;
         }
+        .deleted{
+            position: absolute;
+        }
     </style>
     <title>test Storage 02</title>
 </head>
@@ -64,9 +67,9 @@
         todoList.addEventListener("change", e => {
             e.target.disabled = true;
             let t =parseInt(e.target.id.slice(4), 10);
-            todoAry.filter(o => o.time != t);
+            todoAry = todoAry.filter(o => o.time != t);
             let element = e.target.closest(".todo");
-            localStorage.setItem("todo", JSON.stringify(todoAry))
+            localStorage.setItem("todo", JSON.stringify(todoAry));
             element.classList.add("deleted");
             const animation = element.animate([
                 { 
