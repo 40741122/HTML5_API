@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+  </head>
+  <body>
+    <form action="" onsubmit="return false;" autocomplete="on">
+      <label for="myName">姓名</label>
+      <input type="text" id="myName" name="myName" autofocus required autocomplete="name"><br>
+
+      <label for="myPass">密碼</label>
+      <input type="password" id="myPass" name="myPass" required autocomplete="off" pattern=".{6}"><br>
+
+      <label for="myPass2">密碼2</label>
+      <input type="password" id="myPass2" name="myPass2" required autocomplete="new-password"><br>
+
+      <label for="myTel">手機</label>
+      <input type="tel" id="myTel" name="myTel" required autocomplete="off" pattern="^09\d{2}-?\d{3}-?\d{3}$"><br>
+
+      <br><br>
+      <button type="submit">送出</button>
+    </form>
+    <script>
+      const myPass = document.querySelector("#myPass");
+      const myPass2 = document.querySelector("#myPass2");
+
+      myPass2.addEventListener("blur", e => {
+        // console.log(e);
+        if(myPass.value !== myPass2.value){
+          myPass2.setCustomValidity("兩個密碼要一樣");
+        }else{
+          myPass2.setCustomValidity("");
+        }
+      });
+
+      let inputs = document.querySelectorAll("input");
+
+      const myValidate = e => {
+        console.log(e.target.validity);
+        const t = e.target;
+        const v = t.validity;
+        let msg = "";
+
+        // if(v.patternMismatch === true){
+        //   msg = "請符合格式";
+        // }
+        
+        // if(v.valueMissing === true){
+        //   msg = "必填欄位";
+        // }
+
+        // if(v.typeMissing === true){
+        //   msg="格式錯誤"
+        // }
+
+        switch(true){
+          case v.patternMismatch:
+            msg = "請符合格式";
+            break;
+          case v.valueMissing:
+            msg = "必填欄位";
+            break;
+          case v.typeMissing:
+            msg = "格式錯誤";
+            break;
+        }
+
+        t.setCustomValidity(msg);
+      };
+
+      inputs.forEach(input => {
+        input.addEventListener("blur", myValidate)
+      });
+    </script>
+  </body>
+</html>
